@@ -1,0 +1,11 @@
+.mainWindow {
+    font-size: 60px;
+    border: solid 2px white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    background-color: lightsalmon;
+}

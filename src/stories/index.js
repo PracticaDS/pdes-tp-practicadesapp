@@ -1,4 +1,1 @@
-import '../components/Tablero.storybook'
-import '../components/Ficha.storybook'
-
-
+import '../components/mainWindow/MainWindow.storybook'
