@@ -6,5 +6,5 @@ import Machine from '../components/machine'
 
 storiesOf('Machine', module)
   .add('Seller', () =>
-    <Machine />
+    <Machine image='seller'/>
   )

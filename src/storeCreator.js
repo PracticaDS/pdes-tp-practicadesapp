@@ -1,5 +1,5 @@
 import { createStore } from 'redux'
 
 export default function() {
- return createStore(_ => _)
+  return createStore(_ => _)
 }
