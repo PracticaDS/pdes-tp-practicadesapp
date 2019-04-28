@@ -1,4 +1,3 @@
-import '../components/Tablero.storybook'
-import '../components/Ficha.storybook'
+import './machine.storybook'
 
-
+require('./machine.storybook.js')
