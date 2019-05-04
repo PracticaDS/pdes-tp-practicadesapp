@@ -2,9 +2,9 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 
-import Machine from '../components/machine'
+import Machines from '../components/machines'
 
-storiesOf('Machine', module)
-  .add('Seller', () =>
-    <Machine image='seller'/>
+storiesOf('Machines', module)
+  .add('Machines', () =>
+    <Machines/>
   )

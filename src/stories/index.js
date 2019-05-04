@@ -1,3 +1,3 @@
-import './machine.storybook'
+import './machines.storybook'
 
-require('./machine.storybook.js')
+require('./machines.storybook.js')
