@@ -7,10 +7,8 @@ import App from './App'
 import * as serviceWorker from './serviceWorker'
 import storeCreator from './storeCreator'
 
-const store = storeCreator()
-
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={storeCreator}>
     <App />
   </Provider>,
   document.getElementById('root')

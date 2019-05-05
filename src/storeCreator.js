@@ -1,5 +1,8 @@
-import { createStore } from 'redux'
+import { createStore, combineReducers } from 'redux'
+import findMachines from './reducers/machines'
 
-export default function() {
-  return createStore(_ => _)
-}
+const reducer = combineReducers({
+  findMachines
+});
+
+export default createStore(reducer);

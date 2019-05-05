@@ -1,9 +1,9 @@
 import React from 'react'
-import seller from '../images/seller.png'
-import crafter from '../images/crafter.png'
-import furnace from '../images/furnace.png'
-import starter from '../images/starter.png'
-import transporter from '../images/transporter.png'
+import seller from '../../images/seller.png'
+import crafter from '../../images/crafter.png'
+import furnace from '../../images/furnace.png'
+import starter from '../../images/starter.png'
+import transporter from '../../images/transporter.png'
 
 import './machines.css'
 
