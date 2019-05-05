@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import findMachines from '../../actions/findMachines';
-import empty from '../../images/empty.png'
 
 import './panel.css'
 
 class Panel extends Component {
-
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     const { findMachines } = this.props;
@@ -17,26 +12,23 @@ class Panel extends Component {
   }
 
   render() {
-      const {
-        machines,
-        selected
-      } = this.props;
+    const { machines } = this.props;
 
-      return (
-        <div className="panel">
-          { Array.from({ length: 100 }).map(() => <img className="piece" src={empty} />) }
-        </div>
-      );
+    return (
+      <div className="panel">
+        { machines.map(({ className, src, alt }, i) => <img key={i} className={className} src={src} alt={alt} />) }
+      </div>
+    );
   }
 }
 
 const mapStateToProps = state => ({
-    machines: state.machines,
-    selected: state.selected
+  machines: state.machines,
+  selected: state.selected
 });
 
 const mapDispatchToProps = {
-    findMachines
+  findMachines
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Panel);

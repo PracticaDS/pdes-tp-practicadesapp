@@ -1,8 +1,8 @@
 import { createStore, combineReducers } from 'redux'
-import findMachines from './reducers/machines'
+import machines from './reducers/machines'
 
 const reducer = combineReducers({
-  findMachines
+  machines
 });
 
 export default createStore(reducer);

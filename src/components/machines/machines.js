@@ -11,11 +11,11 @@ export default function Machines() {
   return (
     <div className="machines">
 
-      <img className="machine" src={starter} />
-      <img className="machine" src={seller} />
-      <img className="machine" src={furnace} />
-      <img className="machine" src={crafter} />
-      <img className="machine" src={transporter} />
+      <img className="machine" src={starter} alt='1' />
+      <img className="machine" src={seller} alt='1' />
+      <img className="machine" src={furnace} alt='1' />
+      <img className="machine" src={crafter} alt='1' />
+      <img className="machine" src={transporter} alt='1' />
 
     </div>
   )
