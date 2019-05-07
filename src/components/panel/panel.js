@@ -1,34 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import findMachines from '../../actions/findMachines';
+import updateSelected from '../../actions/updateSelected'
 
 import './panel.css'
 
 class Panel extends Component {
 
-  componentDidMount() {
-    const { findMachines } = this.props;
-    findMachines();
-  }
-
   render() {
-    const { machines } = this.props;
+    const { machines, selected, updateSelected } = this.props;
 
     return (
       <div className="panel">
-        { machines.map(({ className, src, alt }, i) => <img key={i} className={className} src={src} alt={alt} />) }
+        { machines.map(({ className, src, alt }, i) => <img key={i} className={className} src={src} alt={alt} onClick={() => updateSelected(i)} />) }
+
+        selected: { selected }
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  machines: state.machines,
-  selected: state.selected
+  machines: state.panel.machines,
+  selected: state.panel.selected
 });
 
 const mapDispatchToProps = {
-  findMachines
+  updateSelected
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Panel);

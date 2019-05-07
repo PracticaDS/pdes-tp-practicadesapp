@@ -1,8 +1,8 @@
 import { createStore, combineReducers } from 'redux'
-import machines from './reducers/machines'
+import panel from './reducers/panel'
 
 const reducer = combineReducers({
-  machines
+  panel
 });
 
 export default createStore(reducer);
