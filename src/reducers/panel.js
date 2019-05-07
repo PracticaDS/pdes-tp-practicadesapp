@@ -6,8 +6,7 @@ const initialState = { machines, selected: 10 };
 function panel(state = initialState, { type, selected }) {
   switch (type) {
     case updateSelected: {
-      console.log(selected)
-      return Object.assign(state, { selected });
+      return Object.assign({}, state, { selected });
     }
     default:
       return state;
