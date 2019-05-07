@@ -3,12 +3,21 @@
   height: 50px;
   display: inline-block;
   margin: 4px;
+  border: 1px solid rgb(0, 0, 0);
 }
 
 .machines {
   background-color: rgb(211, 241, 241);
-  width: 175px;
-  height: 200px;
+  width: 192px;
+  height: 210px;
   border: 1px solid rgb(147, 187, 187);
   border-radius: 4px;
+}
+
+.selected {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  margin: 4px;
+  border: 1px solid rgb(240, 232, 117);
 }

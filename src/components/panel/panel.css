@@ -11,6 +11,15 @@
   border: 1px solid rgb(255, 255, 255);
 }
 
+.selected {
+  width: 55px;
+  height: 55px;
+  display: inline-table;
+  margin: 0px;
+  margin-top: -7px;
+  border: 1px solid rgb(240, 232, 117);
+}
+
 .panel {
   width: 575px;
   height: 575px;
