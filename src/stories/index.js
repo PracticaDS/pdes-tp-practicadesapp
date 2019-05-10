@@ -1,4 +1,5 @@
-import '../components/Tablero.storybook'
-import '../components/Ficha.storybook'
+import './machines.storybook'
+import './panel.storybook'
 
-
+require('./machines.storybook.js')
+require('./panel.storybook.js')
