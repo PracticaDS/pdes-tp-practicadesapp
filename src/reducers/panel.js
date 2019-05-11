@@ -115,7 +115,7 @@ function panel(state = initialState, { type, selected }) {
         rawMaterials.length ? getPosition(position, typeMachine, rawMaterials[0], direction) : []
       );
       const newMachinesUpdated = machinesUpdated.map(m =>
-        m.rawMaterials.length ? Object.assign({}, m, { rawMaterials: m.rawMaterials }) : m
+        m.rawMaterials.length ? Object.assign({}, m, { rawMaterials: m.rawMaterials.splice(1) }) : m
       );
       const newMachines = newMachinesUpdated.map((machine, pos) => {
         if (nextPositions.map(({ pos: p }) => p).includes(pos)) {
