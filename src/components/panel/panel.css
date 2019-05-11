@@ -1,26 +1,136 @@
-.piece {
+.dpiece {
   width: 55px;
   height: 55px;
   display: inline-table;
   margin: 0px;
   margin-top: -7px;
   border: 1px solid rgb(0, 0, 0);
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
 }
 
-.piece:hover {
-  border: 1px solid rgb(255, 255, 255);
+.lpiece {
+  width: 55px;
+  height: 55px;
+  display: inline-table;
+  margin: 0px;
+  margin-top: -7px;
+  border: 1px solid rgb(0, 0, 0);
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
-.selected {
+.upiece {
+  width: 55px;
+  height: 55px;
+  display: inline-table;
+  margin: 0px;
+  margin-top: -7px;
+  border: 1px solid rgb(0, 0, 0);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.rpiece {
+  width: 55px;
+  height: 55px;
+  display: inline-table;
+  margin: 0px;
+  margin-top: -7px;
+  border: 1px solid rgb(0, 0, 0);
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+
+.dselected {
   width: 55px;
   height: 55px;
   display: inline-table;
   margin: 0px;
   margin-top: -7px;
   border: 1px solid rgb(240, 232, 117);
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
 }
 
-.selected:hover {
+.lselected {
+  width: 55px;
+  height: 55px;
+  display: inline-table;
+  margin: 0px;
+  margin-top: -7px;
+  border: 1px solid rgb(240, 232, 117);
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.uselected {
+  width: 55px;
+  height: 55px;
+  display: inline-table;
+  margin: 0px;
+  margin-top: -7px;
+  border: 1px solid rgb(240, 232, 117);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.rselected {
+  width: 55px;
+  height: 55px;
+  display: inline-table;
+  margin: 0px;
+  margin-top: -7px;
+  border: 1px solid rgb(240, 232, 117);
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+
+.dselected:hover {
+  border: 1px solid rgb(255, 255, 255);
+}
+
+.lselected:hover {
+  border: 1px solid rgb(255, 255, 255);
+}
+
+.uselected:hover {
+  border: 1px solid rgb(255, 255, 255);
+}
+
+.rselected:hover {
+  border: 1px solid rgb(255, 255, 255);
+}
+
+.dpiece:hover {
+  border: 1px solid rgb(255, 255, 255);
+}
+
+.lpiece:hover {
+  border: 1px solid rgb(255, 255, 255);
+}
+
+.upiece:hover {
+  border: 1px solid rgb(255, 255, 255);
+}
+
+.rpiece:hover {
   border: 1px solid rgb(255, 255, 255);
 }
 

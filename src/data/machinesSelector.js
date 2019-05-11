@@ -3,13 +3,15 @@ import crafter from '../images/crafter.png';
 import furnace from '../images/furnace.png';
 import starter from '../images/starter.png';
 import transporter from '../images/transporter.png';
+import girar from '../images/girar.jpg';
 
 const machines = [
   { src: seller, typeMachine: 'seller', rawMaterialStarter: -1 },
   { src: crafter, typeMachine: 'crafter', rawMaterialStarter: -1 },
   { src: furnace, typeMachine: 'furnace', rawMaterialStarter: -1 },
   { src: starter, typeMachine: 'starter', rawMaterialStarter: 1 },
-  { src: transporter, typeMachine: 'transporter', rawMaterialStarter: -1 }
+  { src: transporter, typeMachine: 'transporter', rawMaterialStarter: -1 },
+  { src: girar, typeMachine: 'girar', rawMaterialStarter: -1 }
 ];
 
 export default machines.map(({ src, typeMachine, rawMaterialStarter }) => ({
@@ -18,5 +20,6 @@ export default machines.map(({ src, typeMachine, rawMaterialStarter }) => ({
   alt: '1',
   rawMaterials: [],
   typeMachine,
-  rawMaterialStarter
+  rawMaterialStarter,
+  direction: 'd'
 }));
