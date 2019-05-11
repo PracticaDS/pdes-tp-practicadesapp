@@ -1,5 +1,5 @@
-import { createStore, combineReducers } from 'redux'
-import panel from './reducers/panel'
+import { createStore, combineReducers } from 'redux';
+import panel from './reducers/panel';
 
 const reducer = combineReducers({
   panel
