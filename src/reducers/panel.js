@@ -6,17 +6,13 @@ import { type as gameMode } from '../actions/gameMode';
 import machines from '../data/machines';
 import machinesSelector from '../data/machinesSelector';
 
-const getPositions = (pos, type, material) => {
+const getPosition = (pos, type, material, dir) => {
   if (type === 'seller') return [{ pos, material }];
-  const positions = [];
-  if (type === 'starter') {
-    if (pos - 10 >= 0) positions.push(pos - 10);
-    if (pos + 10 <= 99) positions.push(pos + 10);
-    if (pos % 10 !== 0 && pos !== 0) positions.push(pos - 1);
-    if (pos + (1 % 10) !== 0 && pos !== 99) positions.push(pos + 1);
-  }
-  if (type !== 'starter' && pos !== 99) positions.push(pos + 1);
-  return positions.map(p => ({ pos: p, material }));
+  if (dir === 'up' && pos - 10 >= 0) return [{ pos: pos - 10, material }];
+  if (dir === 'down' && pos + 10 <= 99) return [{ pos: pos + 10, material }];
+  if (dir === 'left' && pos % 10 !== 0 && pos !== 0) return [{ pos: pos - 1, material }];
+  if (dir === 'right' && pos + (1 % 10) !== 0 && pos !== 99) return [{ pos: pos + 1, material }];
+  return [];
 };
 
 const initialState = {
@@ -50,10 +46,10 @@ function panel(state = initialState, { type, selected }) {
               src: state.machinesSelector[state.machineSelected].src,
               typeMachine: state.machinesSelector[state.machineSelected].typeMachine,
               rawMaterialStarter: state.machinesSelector[state.machineSelected].rawMaterialStarter,
-              rawMaterials: state.machinesSelector[state.machineSelected].rawMaterials
+              rawMaterials: state.machinesSelector[state.machineSelected].rawMaterials,
+              direction: state.machinesSelector[state.machineSelected].direction
             }
       );
-      console.log(machinesUpdated[selected]);
       return Object.assign({}, state, { machines: machinesUpdated, selected });
     }
     case updateMachineSelected: {
@@ -73,20 +69,27 @@ function panel(state = initialState, { type, selected }) {
     }
     case tick: {
       const machinesUpdated = Object.assign([], state.machines);
-      const nextPositions = flatMap(machinesUpdated, ({ rawMaterials, typeMachine }, position) =>
-        rawMaterials.length ? getPositions(position, typeMachine, rawMaterials[0]) : []
+      const nextPositions = flatMap(machinesUpdated, ({ rawMaterials, typeMachine, direction }, position) =>
+        rawMaterials.length ? getPosition(position, typeMachine, rawMaterials[0], direction) : []
       );
       const newMachinesUpdated = machinesUpdated.map(m =>
         m.rawMaterials.length ? Object.assign({}, m, { rawMaterials: m.rawMaterials.slice(1) }) : m
       );
-      nextPositions.forEach(({ pos, material }) => {
-        const { typeMachine } = newMachinesUpdated[pos];
-        // if (typeMachine === 'seller') sumar ganancias
-        if (typeMachine === 'transporter') {
-          newMachinesUpdated[pos].rawMaterials = [...newMachinesUpdated[pos].rawMaterials, material];
+      const newMachines = newMachinesUpdated.map((machine, pos) => {
+        if (nextPositions.map(({ pos: p }) => p).includes(pos)) {
+          // if (typeMachine === 'seller') sumar ganancias
+          if (machine.typeMachine === 'transporter') {
+            return Object.assign({}, machine, {
+              rawMaterials: [
+                ...newMachinesUpdated[pos].rawMaterials,
+                ...nextPositions.filter(({ pos: p }) => p === pos).map(({ material }) => material)
+              ]
+            });
+          }
         }
+        return machine;
       });
-      return Object.assign({}, state, { machines: newMachinesUpdated });
+      return Object.assign({}, state, { machines: newMachines });
     }
     case gameMode: {
       const machinesSelectorUpdated = Object.assign([], state.machinesSelector);

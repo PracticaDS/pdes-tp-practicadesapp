@@ -6,7 +6,8 @@ const machines = Array.from({ length: 100 }).map(() => ({
   alt: '1',
   rawMaterials: [],
   typeMachine: -1,
-  rawMaterialStarter: -1
+  rawMaterialStarter: -1,
+  direction: 'down'
 }));
 machines[24] = Object.assign({}, machines[24], { className: 'selected' });
 

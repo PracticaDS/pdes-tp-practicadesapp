@@ -18,5 +18,6 @@ export default machines.map(({ src, typeMachine, rawMaterialStarter }) => ({
   alt: '1',
   rawMaterials: [],
   typeMachine,
-  rawMaterialStarter
+  rawMaterialStarter,
+  direction: 'down'
 }));
