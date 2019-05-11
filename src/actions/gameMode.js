@@ -1,7 +1,7 @@
 export const type = 'gameMode';
 
 const gameMode = () => ({
-    type
+  type
 });
 
 export default gameMode;

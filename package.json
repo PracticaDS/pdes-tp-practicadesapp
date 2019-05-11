@@ -21,7 +21,11 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
+    "lint": "eslint app migrations config test",
+    "lint-diff": "git diff --name-only --cached --relative | grep \\\\.js$ | xargs ./node_modules/eslint/bin/eslint.js",
+    "lint-fix": "eslint app migrations config test --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -42,6 +46,11 @@
     "babel-loader": "^8.0.5",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
+    "eslint-config-airbnb-base": "^12.0.2",
+    "eslint-config-prettier": "^2.3.1",
+    "eslint-plugin-import": "^2.6.1",
+    "eslint-plugin-prettier": "^2.1.1",
+    "prettier-eslint": "^8.2.1",
     "react-test-renderer": "^16.8.6",
     "redux-mock-store": "^1.5.3"
   }

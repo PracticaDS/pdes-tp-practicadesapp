@@ -1,26 +1,26 @@
+/* eslint-disable no-shadow */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import updateMachineSelected from '../../actions/updateMachineSelected'
-import gameMode from '../../actions/gameMode'
+import updateMachineSelected from '../../actions/updateMachineSelected';
+import gameMode from '../../actions/gameMode';
 
-import './machines.css'
+import './machines.css';
 
 class MachinesSelector extends Component {
-
   render() {
     const { machinesSelector, machineSelected, updateMachineSelected, gameMode } = this.props;
 
     return (
       <div className="machines">
+        {machinesSelector.map(({ className, src, alt }, i) => (
+          <img key={i} className={className} src={src} alt={alt} onClick={() => updateMachineSelected(i)} />
+        ))}
 
-        { machinesSelector.map(({ className, src, alt }, i) => <img key={i} 
-        className={className} src={src} alt={alt} 
-        onClick={() => updateMachineSelected(i)} />) }
-
-        { machineSelected } 
-        <button type="button" onClick={() => gameMode()}>gameMode</button> 
-
-      </div>  
+        {machineSelected}
+        <button type="button" onClick={() => gameMode()}>
+          gameMode
+        </button>
+      </div>
     );
   }
 }
@@ -35,4 +35,7 @@ const mapDispatchToProps = {
   gameMode
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MachinesSelector);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MachinesSelector);

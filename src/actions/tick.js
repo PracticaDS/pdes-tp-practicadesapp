@@ -1,7 +1,7 @@
 export const type = 'tick';
 
 const tick = () => ({
-    type
+  type
 });
 
 export default tick;

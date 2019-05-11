@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import './details.css'
+import './details.css';
 
 class Details extends Component {
-
   render() {
-    const { machine: { rawMaterials, typeMachine, rawMaterialStarter } } = this.props;
+    const {
+      machine: { rawMaterials, typeMachine, rawMaterialStarter }
+    } = this.props;
 
     return (
       <div className="details">
-
-        rawMaterials: [{rawMaterials}],
-        typeMachine: {typeMachine},
-        rawMaterialStarter: {rawMaterialStarter}
-        
-      </div>  
+        rawMaterials: [{rawMaterials.map(m => `${m}, `)}], typeMachine: {typeMachine}, rawMaterialStarter:{' '}
+        {rawMaterialStarter}
+      </div>
     );
   }
 }
@@ -26,4 +24,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Details);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Details);

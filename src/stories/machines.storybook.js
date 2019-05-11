@@ -1,10 +1,7 @@
-import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions'
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
-import Machines from '../components/machines/machines'
+import Machines from '../components/machines/machines';
 
-storiesOf('Machines', module)
-  .add('Machines', () =>
-    <Machines/>
-  )
+storiesOf('Machines', module).add('Machines', () => <Machines />);
