@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import updateMachineSelected from '../../actions/updateMachineSelected'
+import gameMode from '../../actions/gameMode'
 
 import './machines.css'
 
 class MachinesSelector extends Component {
 
   render() {
-    const { machinesSelector, machineSelected, updateMachineSelected } = this.props;
+    const { machinesSelector, machineSelected, updateMachineSelected, gameMode } = this.props;
 
     return (
       <div className="machines">
@@ -16,9 +17,10 @@ class MachinesSelector extends Component {
         className={className} src={src} alt={alt} 
         onClick={() => updateMachineSelected(i)} />) }
 
-        { machineSelected }
+        { machineSelected } 
+        <button type="button" onClick={() => gameMode()}>gameMode</button> 
 
-      </div>
+      </div>  
     );
   }
 }
@@ -29,7 +31,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  updateMachineSelected
+  updateMachineSelected,
+  gameMode
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MachinesSelector);
