@@ -8,7 +8,7 @@ const machines = [
   { src: seller, typeMachine: 'seller', rawMaterialStarter: -1 },
   { src: crafter, typeMachine: 'crafter', rawMaterialStarter: -1 },
   { src: furnace, typeMachine: 'furnace', rawMaterialStarter: -1 },
-  { src: starter, typeMachine: 'starter', rawMaterialStarter: -1 },
+  { src: starter, typeMachine: 'starter', rawMaterialStarter: 1 },
   { src: transporter, typeMachine: 'transporter', rawMaterialStarter: -1 },
 ];
 

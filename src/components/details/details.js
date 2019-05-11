@@ -11,7 +11,7 @@ class Details extends Component {
     return (
       <div className="details">
 
-        rawMaterials: [{rawMaterials}],
+        rawMaterials: [{rawMaterials.map(m => `${m}, `)}],
         typeMachine: {typeMachine},
         rawMaterialStarter: {rawMaterialStarter}
         
