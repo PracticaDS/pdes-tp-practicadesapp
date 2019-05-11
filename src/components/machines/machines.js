@@ -3,12 +3,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import updateMachineSelected from '../../actions/updateMachineSelected';
 import gameMode from '../../actions/gameMode';
+import selectMode from '../../actions/selectMode';
 
 import './machines.css';
 
 class MachinesSelector extends Component {
   render() {
-    const { machinesSelector, machineSelected, updateMachineSelected, gameMode } = this.props;
+    const { machinesSelector, machineSelected, updateMachineSelected, gameMode, selectMode } = this.props;
 
     return (
       <div className="machines">
@@ -19,6 +20,9 @@ class MachinesSelector extends Component {
         {machineSelected}
         <button type="button" onClick={() => gameMode()}>
           gameMode
+        </button>
+        <button type="button" onClick={() => selectMode()}>
+          selectMode
         </button>
       </div>
     );
@@ -32,7 +36,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   updateMachineSelected,
-  gameMode
+  gameMode,
+  selectMode
 };
 
 export default connect(
