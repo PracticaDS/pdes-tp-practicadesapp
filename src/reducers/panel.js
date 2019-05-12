@@ -5,6 +5,7 @@ import { type as tick } from '../actions/tick';
 import { type as selectMode } from '../actions/selectMode';
 import machines from '../data/machines';
 import machinesSelector from '../data/machinesSelector';
+import empty from '../images/empty.png';
 
 const getPosition = (pos, type, material, dir) => {
   if (type === 'seller') return [{ pos, material }];
@@ -59,7 +60,10 @@ const getMachineState = (state, selected) => {
       return {};
     // delete
     case 7:
-      return {};
+      return {
+        src: empty,
+        typeMachine: -1
+      };
     // oro
     case 8: {
       return {
