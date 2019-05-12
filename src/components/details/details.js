@@ -21,7 +21,8 @@ class Details extends Component {
       <div className="details">
         rawMaterials: [{rawMaterials.map(m => `${m}, `)}], typeMachine: {typeMachine}, rawMaterialStarter:
         {rawMaterialStarter}, direction: {direction}, className: {className}, crafterMaterials:{' '}
-        {crafterMaterials}, crafterReturn: {crafterReturn}
+        {crafterMaterials.map(m => `${m}, `)}, crafterReturn: {crafterReturn}, receta1: oro y cobre -> hierro,
+        receta2: hierro deretido y cobre -> oro
       </div>
     );
   }
