@@ -120,7 +120,12 @@ const updateRawMaterials = (nextPositions, machinesToUpdate) => {
           });
         }
         case 'furnace': {
-          return machine;
+          return Object.assign({}, machine, {
+            rawMaterials: [
+              ...machinesToUpdate[pos].rawMaterials,
+              ...nextPositions.filter(({ pos: p }) => p === pos).map(({ material }) => material - 10)
+            ]
+          });
         }
         case 'seller': {
           earning += nextPositions.reduce((acc, { pos: p, material }) => {
