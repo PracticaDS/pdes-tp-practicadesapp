@@ -19,11 +19,7 @@ const getCrafterPosition = (rawMaterials, crafterMaterials, pos, material, dir) 
   crafterMaterials.every(m => rawMaterials.includes(m)) ? getPosition(pos, 'crafter', material, dir) : [];
 
 const crafterDeleteMaterials = (rawMaterials, crafterMaterials) => {
-  console.log(rawMaterials);
-  console.log(crafterMaterials);
   const indexes = crafterMaterials.map(m => rawMaterials.indexOf(m));
-  console.log(indexes);
-  console.log(rawMaterials.filter((_, i) => !indexes.includes(i)));
   return rawMaterials.filter((_, i) => !indexes.includes(i));
 };
 
@@ -45,16 +41,6 @@ const getNextPostGirar = pos => {
 
 const getMachineState = (state, selected) => {
   switch (state.machineSelected) {
-    // game mode
-    case -1: {
-      return {
-        className: `${state.machines[selected].className.slice(0, 1)}selected`,
-        rawMaterials:
-          state.machines[selected].typeMachine === 'starter'
-            ? [...state.machines[selected].rawMaterials, state.machines[selected].rawMaterialStarter]
-            : state.machines[selected].rawMaterials
-      };
-    }
     // select mode
     case -2: {
       return { className: `${state.machines[selected].className.slice(0, 1)}selected` };
