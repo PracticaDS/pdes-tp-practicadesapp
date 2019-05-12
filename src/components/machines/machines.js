@@ -1,26 +1,54 @@
-/* eslint-disable no-shadow */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import updateMachineSelected from '../../actions/updateMachineSelected';
-import gameMode from '../../actions/gameMode';
-import selectMode from '../../actions/selectMode';
+import updateeSelected from '../../actions/updateMachineSelected';
+import select from '../../actions/selectMode';
 
 import './machines.css';
 
 class MachinesSelector extends Component {
   render() {
-    const { machinesSelector, machineSelected, updateMachineSelected, gameMode, selectMode } = this.props;
+    const {
+      machinesSelector,
+      machineSelected,
+      updateMachineSelected,
+      selectMode,
+      chooseRawMaterial,
+      chooseCrafter
+    } = this.props;
 
     return (
       <div className="machines">
-        {machinesSelector.map(({ className, src, alt }, i) => (
+        {machinesSelector.slice(0, 8).map(({ className, src, alt }, i) => (
           <img key={i} className={className} src={src} alt={alt} onClick={() => updateMachineSelected(i)} />
         ))}
 
+        {chooseRawMaterial &&
+          machinesSelector
+            .slice(8, 11)
+            .map(({ className, src, alt }, i) => (
+              <img
+                key={i}
+                className={className}
+                src={src}
+                alt={alt}
+                onClick={() => updateMachineSelected(i + 8)}
+              />
+            ))}
+
+        {chooseCrafter &&
+          machinesSelector
+            .slice(11, 13)
+            .map(({ className, src, alt }, i) => (
+              <img
+                key={i}
+                className={className}
+                src={src}
+                alt={alt}
+                onClick={() => updateMachineSelected(i + 11)}
+              />
+            ))}
+
         {machineSelected}
-        <button type="button" onClick={() => gameMode()}>
-          gameMode
-        </button>
         <button type="button" onClick={() => selectMode()}>
           selectMode
         </button>
@@ -31,13 +59,14 @@ class MachinesSelector extends Component {
 
 const mapStateToProps = state => ({
   machinesSelector: state.panel.machinesSelector,
-  machineSelected: state.panel.machineSelected
+  machineSelected: state.panel.machineSelected,
+  chooseRawMaterial: state.panel.chooseRawMaterial,
+  chooseCrafter: state.panel.chooseCrafter
 });
 
 const mapDispatchToProps = {
-  updateMachineSelected,
-  gameMode,
-  selectMode
+  updateMachineSelected: updateeSelected,
+  selectMode: select
 };
 
 export default connect(
