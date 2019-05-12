@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@types/lodash": "^4.14.123",
+    "expect": "^24.8.0",
     "husky": "^1.3.1",
     "lint-staged": "^8.1.5",
     "lodash": "^4.17.11",
