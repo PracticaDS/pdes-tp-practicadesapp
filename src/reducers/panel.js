@@ -1,8 +1,8 @@
+/* eslint-disable no-duplicate-case */
 import { flatMap } from 'lodash';
 import { type as updateSelected } from '../actions/updateSelected';
 import { type as updateMachineSelected } from '../actions/updateMachineSelected';
 import { type as tick } from '../actions/tick';
-import { type as gameMode } from '../actions/gameMode';
 import { type as selectMode } from '../actions/selectMode';
 import machines from '../data/machines';
 import machinesSelector from '../data/machinesSelector';
@@ -57,6 +57,42 @@ const getMachineState = (state, selected) => {
         direction
       };
     }
+    // move
+    case 6:
+      return {};
+    // delete
+    case 7:
+      return {};
+    // oro
+    case 8: {
+      return {
+        className: `${state.machines[selected].className.slice(0, 1)}selected`,
+        rawMaterials:
+          state.machines[selected].typeMachine === 'starter'
+            ? [...state.machines[selected].rawMaterials, state.machinesSelector[state.machineSelected].value]
+            : []
+      };
+    }
+    // hierro
+    case 9: {
+      return {
+        className: `${state.machines[selected].className.slice(0, 1)}selected`,
+        rawMaterials:
+          state.machines[selected].typeMachine === 'starter'
+            ? [...state.machines[selected].rawMaterials, state.machinesSelector[state.machineSelected].value]
+            : []
+      };
+    }
+    // cobre
+    case 10: {
+      return {
+        className: `${state.machines[selected].className.slice(0, 1)}selected`,
+        rawMaterials:
+          state.machines[selected].typeMachine === 'starter'
+            ? [...state.machines[selected].rawMaterials, state.machinesSelector[state.machineSelected].value]
+            : []
+      };
+    }
     // machine in panel mode
     default:
       return {
@@ -84,7 +120,12 @@ const updateRawMaterials = (nextPositions, machinesToUpdate) => {
           });
         }
         case 'furnace': {
-          return machine;
+          return Object.assign({}, machine, {
+            rawMaterials: [
+              ...machinesToUpdate[pos].rawMaterials,
+              ...nextPositions.filter(({ pos: p }) => p === pos).map(({ material }) => material - 10)
+            ]
+          });
         }
         case 'seller': {
           earning += nextPositions.reduce((acc, { pos: p, material }) => {
@@ -93,7 +134,7 @@ const updateRawMaterials = (nextPositions, machinesToUpdate) => {
           }, 0);
           return machine;
         }
-        default: {
+        case 'transporter': {
           return Object.assign({}, machine, {
             rawMaterials: [
               ...machinesToUpdate[pos].rawMaterials,
@@ -101,6 +142,16 @@ const updateRawMaterials = (nextPositions, machinesToUpdate) => {
             ]
           });
         }
+        case 'starter': {
+          return Object.assign({}, machine, {
+            rawMaterials: [
+              ...machinesToUpdate[pos].rawMaterials,
+              ...nextPositions.filter(({ pos: p }) => p === pos).map(({ material }) => material)
+            ]
+          });
+        }
+        default:
+          return machine;
       }
     }
     return machine;
@@ -113,7 +164,8 @@ const initialState = {
   selected: 24,
   machinesSelector,
   machineSelected: -1,
-  earnings: 0
+  earnings: 0,
+  chooseRawMaterial: false
 };
 
 function panel(state = initialState, { type, selected }) {
@@ -129,7 +181,8 @@ function panel(state = initialState, { type, selected }) {
         machinesUpdated[selected],
         getMachineState(state, selected)
       );
-      return Object.assign({}, state, { machines: machinesUpdated, selected });
+      const chooseRawMaterial = machinesUpdated[selected].typeMachine === 'starter';
+      return Object.assign({}, state, { machines: machinesUpdated, selected, chooseRawMaterial });
     }
     // click in select machine
     case updateMachineSelected: {
@@ -157,17 +210,10 @@ function panel(state = initialState, { type, selected }) {
         m.rawMaterials.length ? Object.assign({}, m, { rawMaterials: m.rawMaterials.splice(1) }) : m
       );
       const { newMachines, earning } = updateRawMaterials(nextPositions, newMachinesUpdated);
-      return Object.assign({}, state, { machines: newMachines, earnings: state.earnings + earning });
-    }
-    // game mode
-    case gameMode: {
-      const machinesSelectorUpdated = Object.assign([], state.machinesSelector);
-      machinesSelectorUpdated[state.machineSelected] = Object.assign(
-        {},
-        state.machinesSelector[state.machineSelected],
-        { className: 'machine' }
-      );
-      return Object.assign({}, state, { machinesSelector: machinesSelectorUpdated, machineSelected: -1 });
+      return Object.assign({}, state, {
+        machines: newMachines,
+        earnings: state.earnings + earning
+      });
     }
     // select mode
     case selectMode: {

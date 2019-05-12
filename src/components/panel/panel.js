@@ -1,8 +1,7 @@
-/* eslint-disable no-shadow */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import updateSelected from '../../actions/updateSelected';
-import tick from '../../actions/tick';
+import update from '../../actions/updateSelected';
+import tickPanel from '../../actions/tick';
 
 import './panel.css';
 
@@ -30,8 +29,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  updateSelected,
-  tick
+  updateSelected: update,
+  tick: tickPanel
 };
 
 export default connect(
