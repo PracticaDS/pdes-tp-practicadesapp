@@ -12,7 +12,8 @@ class MachinesSelector extends Component {
       machineSelected,
       updateMachineSelected,
       selectMode,
-      chooseRawMaterial
+      chooseRawMaterial,
+      chooseCrafter
     } = this.props;
 
     return (
@@ -23,7 +24,7 @@ class MachinesSelector extends Component {
 
         {chooseRawMaterial &&
           machinesSelector
-            .slice(8)
+            .slice(8, 11)
             .map(({ className, src, alt }, i) => (
               <img
                 key={i}
@@ -31,6 +32,19 @@ class MachinesSelector extends Component {
                 src={src}
                 alt={alt}
                 onClick={() => updateMachineSelected(i + 8)}
+              />
+            ))}
+
+        {chooseCrafter &&
+          machinesSelector
+            .slice(11, 13)
+            .map(({ className, src, alt }, i) => (
+              <img
+                key={i}
+                className={className}
+                src={src}
+                alt={alt}
+                onClick={() => updateMachineSelected(i + 11)}
               />
             ))}
 
@@ -46,7 +60,8 @@ class MachinesSelector extends Component {
 const mapStateToProps = state => ({
   machinesSelector: state.panel.machinesSelector,
   machineSelected: state.panel.machineSelected,
-  chooseRawMaterial: state.panel.chooseRawMaterial
+  chooseRawMaterial: state.panel.chooseRawMaterial,
+  chooseCrafter: state.panel.chooseCrafter
 });
 
 const mapDispatchToProps = {

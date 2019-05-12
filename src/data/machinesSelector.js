@@ -9,28 +9,36 @@ import hierro from '../images/hierro.jpg';
 import cobre from '../images/cobre.jpg';
 import move from '../images/move.png';
 import remove from '../images/delete.png';
+import receta1 from '../images/receta1.jpeg';
+import receta2 from '../images/receta2.jpg';
 
 const machines = [
-  { src: seller, typeMachine: 'seller', rawMaterialStarter: -1 },
-  { src: crafter, typeMachine: 'crafter', rawMaterialStarter: -1 },
-  { src: furnace, typeMachine: 'furnace', rawMaterialStarter: -1 },
+  { src: seller, typeMachine: 'seller' },
+  { src: crafter, typeMachine: 'crafter' },
+  { src: furnace, typeMachine: 'furnace' },
   { src: starter, typeMachine: 'starter', rawMaterialStarter: 1 },
-  { src: transporter, typeMachine: 'transporter', rawMaterialStarter: -1 },
-  { src: girar, typeMachine: 'girar', rawMaterialStarter: -1 },
-  { src: move, typeMachine: 'move', rawMaterialStarter: -1 },
-  { src: remove, typeMachine: 'remove', rawMaterialStarter: -1 },
-  { src: oro, typeMachine: 'oro', rawMaterialStarter: -1, value: 100 },
-  { src: hierro, typeMachine: 'hierro', rawMaterialStarter: -1, value: 70 },
-  { src: cobre, typeMachine: 'cobre', rawMaterialStarter: -1, value: 50 }
+  { src: transporter, typeMachine: 'transporter' },
+  { src: girar, typeMachine: 'girar' },
+  { src: move, typeMachine: 'move' },
+  { src: remove, typeMachine: 'remove' },
+  { src: oro, typeMachine: 'oro', value: 100 },
+  { src: hierro, typeMachine: 'hierro', value: 70 },
+  { src: cobre, typeMachine: 'cobre', value: 50 },
+  { src: receta1, typeMachine: 'receta1', crafterMaterials: [100, 50], crafterReturn: 70 },
+  { src: receta2, typeMachine: 'receta2', crafterMaterials: [60, 50], crafterReturn: 100 }
 ];
 
-export default machines.map(({ src, typeMachine, rawMaterialStarter, value = -1 }) => ({
-  className: 'machine',
-  src,
-  alt: '1',
-  rawMaterials: [],
-  typeMachine,
-  rawMaterialStarter,
-  direction: 'd',
-  value
-}));
+export default machines.map(
+  ({ src, typeMachine, rawMaterialStarter = -1, value = -1, crafterMaterials = [], crafterReturn = -1 }) => ({
+    className: 'machine',
+    src,
+    alt: '1',
+    rawMaterials: [],
+    typeMachine,
+    rawMaterialStarter,
+    direction: 'd',
+    value,
+    crafterMaterials,
+    crafterReturn
+  })
+);
