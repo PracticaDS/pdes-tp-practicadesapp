@@ -70,11 +70,50 @@ const getMachineState = (state, selected) => {
   }
 };
 
+const updateRawMaterials = (nextPositions, machinesToUpdate) => {
+  let earning = 0;
+  const newMachines = machinesToUpdate.map((machine, pos) => {
+    if (nextPositions.map(({ pos: p }) => p).includes(pos)) {
+      switch (machine.typeMachine) {
+        case 'crafter': {
+          return Object.assign({}, machine, {
+            rawMaterials: [
+              ...machinesToUpdate[pos].rawMaterials,
+              ...nextPositions.filter(({ pos: p }) => p === pos).map(({ material }) => material)
+            ]
+          });
+        }
+        case 'furnace': {
+          return machine;
+        }
+        case 'seller': {
+          earning += nextPositions.reduce((acc, { pos: p, material }) => {
+            const e = p === pos ? material : 0;
+            return acc + e;
+          }, 0);
+          return machine;
+        }
+        default: {
+          return Object.assign({}, machine, {
+            rawMaterials: [
+              ...machinesToUpdate[pos].rawMaterials,
+              ...nextPositions.filter(({ pos: p }) => p === pos).map(({ material }) => material)
+            ]
+          });
+        }
+      }
+    }
+    return machine;
+  });
+  return { newMachines, earning };
+};
+
 const initialState = {
   machines,
   selected: 24,
   machinesSelector,
-  machineSelected: -1
+  machineSelected: -1,
+  earnings: 0
 };
 
 function panel(state = initialState, { type, selected }) {
@@ -115,23 +154,10 @@ function panel(state = initialState, { type, selected }) {
         rawMaterials.length ? getPosition(position, typeMachine, rawMaterials[0], direction) : []
       );
       const newMachinesUpdated = machinesUpdated.map(m =>
-        m.rawMaterials.length ? Object.assign({}, m, { rawMaterials: m.rawMaterials }) : m
+        m.rawMaterials.length ? Object.assign({}, m, { rawMaterials: m.rawMaterials.splice(1) }) : m
       );
-      const newMachines = newMachinesUpdated.map((machine, pos) => {
-        if (nextPositions.map(({ pos: p }) => p).includes(pos)) {
-          // if (typeMachine === 'seller') sumar ganancias
-          if (machine.typeMachine === 'transporter') {
-            return Object.assign({}, machine, {
-              rawMaterials: [
-                ...newMachinesUpdated[pos].rawMaterials,
-                ...nextPositions.filter(({ pos: p }) => p === pos).map(({ material }) => material)
-              ]
-            });
-          }
-        }
-        return machine;
-      });
-      return Object.assign({}, state, { machines: newMachines });
+      const { newMachines, earning } = updateRawMaterials(nextPositions, newMachinesUpdated);
+      return Object.assign({}, state, { machines: newMachines, earnings: state.earnings + earning });
     }
     // game mode
     case gameMode: {
