@@ -6,13 +6,22 @@ import './details.css';
 class Details extends Component {
   render() {
     const {
-      machine: { rawMaterials, typeMachine, rawMaterialStarter, direction, className }
+      machine: {
+        rawMaterials,
+        typeMachine,
+        rawMaterialStarter,
+        direction,
+        className,
+        crafterMaterials,
+        crafterReturn
+      }
     } = this.props;
 
     return (
       <div className="details">
         rawMaterials: [{rawMaterials.map(m => `${m}, `)}], typeMachine: {typeMachine}, rawMaterialStarter:
-        {rawMaterialStarter}, direction: {direction}, className: {className}
+        {rawMaterialStarter}, direction: {direction}, className: {className}, crafterMaterials:{' '}
+        {crafterMaterials}, crafterReturn: {crafterReturn}
       </div>
     );
   }

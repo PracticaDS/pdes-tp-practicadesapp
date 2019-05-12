@@ -1,4 +1,3 @@
-/* eslint-disable no-duplicate-case */
 import { flatMap } from 'lodash';
 import { type as updateSelected } from '../actions/updateSelected';
 import { type as updateMachineSelected } from '../actions/updateMachineSelected';
@@ -14,6 +13,18 @@ const getPosition = (pos, type, material, dir) => {
   if (dir === 'l' && pos % 10 !== 0 && pos !== 0) return [{ pos: pos - 1, material }];
   if (dir === 'r' && pos + (1 % 10) !== 0 && pos !== 99) return [{ pos: pos + 1, material }];
   return [];
+};
+
+const getCrafterPosition = (rawMaterials, crafterMaterials, pos, material, dir) =>
+  crafterMaterials.every(m => rawMaterials.includes(m)) ? getPosition(pos, 'crafter', material, dir) : [];
+
+const crafterDeleteMaterials = (rawMaterials, crafterMaterials) => {
+  console.log(rawMaterials);
+  console.log(crafterMaterials);
+  const indexes = crafterMaterials.map(m => rawMaterials.indexOf(m));
+  console.log(indexes);
+  console.log(rawMaterials.filter((_, i) => !indexes.includes(i)));
+  return rawMaterials.filter((_, i) => !indexes.includes(i));
 };
 
 const getNextPostGirar = pos => {
@@ -93,6 +104,25 @@ const getMachineState = (state, selected) => {
             : []
       };
     }
+    // receta: oro y cobre -> hierro
+    case 11: {
+      return {
+        className: `${state.machines[selected].className.slice(0, 1)}selected`,
+        crafterReturn: state.machinesSelector[state.machineSelected].crafterReturn,
+        crafterMaterials:
+          state.machines[selected].typeMachine === 'crafter'
+            ? state.machinesSelector[state.machineSelected].crafterMaterials
+            : []
+      };
+    }
+    // receta: hierro deretido y cobre -> oro
+    case 12: {
+      return {
+        className: `${state.machines[selected].className.slice(0, 1)}selected`,
+        crafterReturn: state.machinesSelector[state.machineSelected].crafterReturn,
+        crafterMaterials: state.machinesSelector[state.machineSelected].crafterMaterials
+      };
+    }
     // machine in panel mode
     default:
       return {
@@ -165,7 +195,8 @@ const initialState = {
   machinesSelector,
   machineSelected: -1,
   earnings: 0,
-  chooseRawMaterial: false
+  chooseRawMaterial: false,
+  chooseCrafter: false
 };
 
 function panel(state = initialState, { type, selected }) {
@@ -182,7 +213,13 @@ function panel(state = initialState, { type, selected }) {
         getMachineState(state, selected)
       );
       const chooseRawMaterial = machinesUpdated[selected].typeMachine === 'starter';
-      return Object.assign({}, state, { machines: machinesUpdated, selected, chooseRawMaterial });
+      const chooseCrafter = machinesUpdated[selected].typeMachine === 'crafter';
+      return Object.assign({}, state, {
+        machines: machinesUpdated,
+        selected,
+        chooseRawMaterial,
+        chooseCrafter
+      });
     }
     // click in select machine
     case updateMachineSelected: {
@@ -203,11 +240,25 @@ function panel(state = initialState, { type, selected }) {
     // tick
     case tick: {
       const machinesUpdated = Object.assign([], state.machines);
-      const nextPositions = flatMap(machinesUpdated, ({ rawMaterials, typeMachine, direction }, position) =>
-        rawMaterials.length ? getPosition(position, typeMachine, rawMaterials[0], direction) : []
+      const nextPositions = flatMap(
+        machinesUpdated,
+        ({ rawMaterials, typeMachine, direction, crafterMaterials, crafterReturn }, position) =>
+          rawMaterials.length
+            ? typeMachine === 'crafter'
+              ? getCrafterPosition(rawMaterials, crafterMaterials, position, crafterReturn, direction)
+              : getPosition(position, typeMachine, rawMaterials[0], direction)
+            : []
       );
       const newMachinesUpdated = machinesUpdated.map(m =>
-        m.rawMaterials.length ? Object.assign({}, m, { rawMaterials: m.rawMaterials.splice(1) }) : m
+        m.rawMaterials.length
+          ? m.typeMachine === 'crafter'
+            ? getCrafterPosition(m.rawMaterials, m.crafterMaterials, 1, m.crafterReturn, m.direction).length
+              ? Object.assign({}, m, {
+                  rawMaterials: crafterDeleteMaterials(m.rawMaterials, m.crafterMaterials)
+                })
+              : m
+            : Object.assign({}, m, { rawMaterials: m.rawMaterials.splice(1) })
+          : m
       );
       const { newMachines, earning } = updateRawMaterials(nextPositions, newMachinesUpdated);
       return Object.assign({}, state, {
