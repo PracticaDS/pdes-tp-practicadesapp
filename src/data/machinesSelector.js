@@ -18,14 +18,14 @@ const machines = [
   { src: furnace, typeMachine: 'furnace' },
   { src: starter, typeMachine: 'starter', rawMaterialStarter: 1 },
   { src: transporter, typeMachine: 'transporter' },
-  { src: girar, typeMachine: 'girar' },
-  { src: move, typeMachine: 'move' },
-  { src: remove, typeMachine: 'remove' },
   { src: oro, typeMachine: 'oro', value: 100 },
   { src: hierro, typeMachine: 'hierro', value: 70 },
   { src: cobre, typeMachine: 'cobre', value: 50 },
   { src: receta1, typeMachine: 'receta1', crafterMaterials: [100, 50], crafterReturn: 70 },
-  { src: receta2, typeMachine: 'receta2', crafterMaterials: [60, 50], crafterReturn: 100 }
+  { src: receta2, typeMachine: 'receta2', crafterMaterials: [60, 50], crafterReturn: 100 },
+  { src: girar, typeMachine: 'girar' },
+  { src: move, typeMachine: 'move' },
+  { src: remove, typeMachine: 'remove' }
 ];
 
 export default machines.map(

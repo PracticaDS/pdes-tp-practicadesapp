@@ -7,7 +7,7 @@ class Earnings extends Component {
   render() {
     const { earnings } = this.props;
 
-    return <div className="earnings">earnings: {earnings}</div>;
+    return <div className="earnings"><h5>Ganancias:</h5> <h5>$ {earnings}</h5> </div>;
   }
 }
 
