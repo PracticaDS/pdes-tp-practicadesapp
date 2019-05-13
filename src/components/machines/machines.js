@@ -34,7 +34,7 @@ class MachinesSelector extends Component {
           />
         ))}
 
-        {chooseRawMaterial && <h5>Materiales:</h5>}
+        {chooseRawMaterial && <h5>Materiales</h5>}
 
         {chooseRawMaterial &&
           machinesSelector
@@ -49,7 +49,7 @@ class MachinesSelector extends Component {
               />
             ))}
 
-        {chooseCrafter && <h5>Recetas:</h5>}
+        {chooseCrafter && <h5>Recetas</h5>}
 
         {chooseCrafter &&
           machinesSelector
@@ -63,12 +63,6 @@ class MachinesSelector extends Component {
                 onClick={() => updateMachineSelected(i + 11)}
               />
             ))}
-
-        {machineSelected}
-
-        <button type="button" onClick={() => selectMode()}>
-          selectMode
-        </button>
       </div>
     );
   }

@@ -19,7 +19,7 @@ const machines = [
   { src: starter, typeMachine: 'starter', rawMaterialStarter: 1 },
   { src: transporter, typeMachine: 'transporter' },
   { src: girar, typeMachine: 'girar' },
-  { src: move, typeMachine: 'move' },
+  { src: move, typeMachine: 'move' , className: 'selected'},
   { src: remove, typeMachine: 'remove' },
   { src: oro, typeMachine: 'oro', value: 100 },
   { src: hierro, typeMachine: 'hierro', value: 70 },
@@ -29,8 +29,8 @@ const machines = [
 ];
 
 export default machines.map(
-  ({ src, typeMachine, rawMaterialStarter = -1, value = -1, crafterMaterials = [], crafterReturn = -1 }) => ({
-    className: 'machine',
+  ({ src, className = 'machine', typeMachine, rawMaterialStarter = -1, value = -1, crafterMaterials = [], crafterReturn = -1 }) => ({
+    className,
     src,
     alt: '1',
     rawMaterials: [],

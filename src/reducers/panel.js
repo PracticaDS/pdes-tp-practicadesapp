@@ -42,10 +42,6 @@ const getNextPostGirar = pos => {
 
 const getMachineState = (state, selected) => {
   switch (state.machineSelected) {
-    // select mode
-    case -2: {
-      return { className: `${state.machines[selected].className.slice(0, 1)}selected` };
-    }
     // girar mode
     case 5: {
       if (state.machines[state.selected].typeMachine === 'seller') return {};
@@ -55,9 +51,9 @@ const getMachineState = (state, selected) => {
         direction
       };
     }
-    // move
+    // select mode
     case 6:
-      return {};
+      return { className: `${state.machines[selected].className.slice(0, 1)}selected` };
     // delete
     case 7:
       return {
@@ -183,7 +179,7 @@ const initialState = {
   machines,
   selected: 24,
   machinesSelector,
-  machineSelected: -2,
+  machineSelected: 2,
   earnings: 0,
   chooseRawMaterial: false,
   chooseCrafter: false
@@ -255,16 +251,6 @@ function panel(state = initialState, { type, selected }) {
         machines: newMachines,
         earnings: state.earnings + earning
       });
-    }
-    // select mode
-    case selectMode: {
-      const machinesSelectorUpdated = Object.assign([], state.machinesSelector);
-      machinesSelectorUpdated[state.machineSelected] = Object.assign(
-        {},
-        state.machinesSelector[state.machineSelected],
-        { className: 'machine' }
-      );
-      return Object.assign({}, state, { machinesSelector: machinesSelectorUpdated, machineSelected: -2 });
     }
     default:
       return state;
