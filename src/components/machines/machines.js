@@ -23,13 +23,22 @@ class MachinesSelector extends Component {
           <img key={i} className={className} src={src} alt={alt} onClick={() => updateMachineSelected(i)} />
         ))}
 
-        {chooseRawMaterial &&
-          <h5>Materiales:</h5>
-        }
+        <h5>Acciones</h5>
+        {machinesSelector.slice(5, 8).map(({ className, src, alt }, i) => (
+          <img
+            key={i}
+            className={className}
+            src={src}
+            alt={alt}
+            onClick={() => updateMachineSelected(i + 5)}
+          />
+        ))}
+
+        {chooseRawMaterial && <h5>Materiales:</h5>}
 
         {chooseRawMaterial &&
           machinesSelector
-            .slice(5, 8)
+            .slice(8, 11)
             .map(({ className, src, alt }, i) => (
               <img
                 key={i}
@@ -40,13 +49,11 @@ class MachinesSelector extends Component {
               />
             ))}
 
-        {chooseCrafter &&
-          <h5>Recetas:</h5>
-        }
+        {chooseCrafter && <h5>Recetas:</h5>}
 
         {chooseCrafter &&
           machinesSelector
-            .slice(8, 10)
+            .slice(11, 13)
             .map(({ className, src, alt }, i) => (
               <img
                 key={i}
@@ -58,11 +65,6 @@ class MachinesSelector extends Component {
             ))}
 
         {machineSelected}
-
-        <h5>Acciones</h5>
-        {machinesSelector.slice(10, 13).map(({ className, src, alt }, i) => (
-          <img key={i} className={className} src={src} alt={alt} onClick={() => updateMachineSelected(i)} />
-        ))}        
 
         <button type="button" onClick={() => selectMode()}>
           selectMode

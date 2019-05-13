@@ -183,7 +183,7 @@ const initialState = {
   machines,
   selected: 24,
   machinesSelector,
-  machineSelected: -1,
+  machineSelected: -2,
   earnings: 0,
   chooseRawMaterial: false,
   chooseCrafter: false
