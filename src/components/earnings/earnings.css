@@ -1,7 +1,14 @@
 .earnings {
-  background-color: rgb(211, 241, 241);
-  width: 292px;
-  height: 30px;
-  border: 1px solid rgb(147, 187, 187);
+  background-color: rgb(82, 82, 80);
+  width: 192px;
+  height: 60px;
+  border: 1px solid rgb(238, 241, 6);
   border-radius: 4px;
+  margin: 20px;
+}
+
+h1, h2, h5{
+  color: yellow;
+  margin: 10px;
+  margin-top: 10px;
 }

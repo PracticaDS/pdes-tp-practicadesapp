@@ -18,9 +18,23 @@ class MachinesSelector extends Component {
 
     return (
       <div className="machines">
-        {machinesSelector.slice(0, 8).map(({ className, src, alt }, i) => (
+        <h5>Máquinas</h5>
+        {machinesSelector.slice(0, 5).map(({ className, src, alt }, i) => (
           <img key={i} className={className} src={src} alt={alt} onClick={() => updateMachineSelected(i)} />
         ))}
+
+        <h5>Acciones</h5>
+        {machinesSelector.slice(5, 8).map(({ className, src, alt }, i) => (
+          <img
+            key={i}
+            className={className}
+            src={src}
+            alt={alt}
+            onClick={() => updateMachineSelected(i + 5)}
+          />
+        ))}
+
+        {chooseRawMaterial && <h5>Materiales:</h5>}
 
         {chooseRawMaterial &&
           machinesSelector
@@ -34,6 +48,8 @@ class MachinesSelector extends Component {
                 onClick={() => updateMachineSelected(i + 8)}
               />
             ))}
+
+        {chooseCrafter && <h5>Recetas:</h5>}
 
         {chooseCrafter &&
           machinesSelector
@@ -49,6 +65,7 @@ class MachinesSelector extends Component {
             ))}
 
         {machineSelected}
+
         <button type="button" onClick={() => selectMode()}>
           selectMode
         </button>
