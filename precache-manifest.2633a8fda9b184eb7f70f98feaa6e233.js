@@ -24,19 +24,19 @@ self.__precacheManifest = [
     "url": "/pdes-tp-practicadesapp/static/js/runtime~main.597d32ae.js"
   },
   {
-    "revision": "30bf747913398f39932a",
-    "url": "/pdes-tp-practicadesapp/static/js/main.dd9190cb.chunk.js"
+    "revision": "3257ab9df76754531b57",
+    "url": "/pdes-tp-practicadesapp/static/js/main.953e8454.chunk.js"
   },
   {
     "revision": "299e7f30b405153022e7",
     "url": "/pdes-tp-practicadesapp/static/js/2.66601053.chunk.js"
   },
   {
-    "revision": "30bf747913398f39932a",
-    "url": "/pdes-tp-practicadesapp/static/css/main.d7703eca.chunk.css"
+    "revision": "3257ab9df76754531b57",
+    "url": "/pdes-tp-practicadesapp/static/css/main.5edbc12e.chunk.css"
   },
   {
-    "revision": "696f754d66cd1214fc7cd087c9e3d5e0",
+    "revision": "24200b104466aa0934c1f187acf8b446",
     "url": "/pdes-tp-practicadesapp/index.html"
   }
 ];
