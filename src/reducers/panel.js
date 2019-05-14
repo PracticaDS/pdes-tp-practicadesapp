@@ -2,7 +2,6 @@ import { flatMap } from 'lodash';
 import { type as updateSelected } from '../actions/updateSelected';
 import { type as updateMachineSelected } from '../actions/updateMachineSelected';
 import { type as tick } from '../actions/tick';
-import { type as selectMode } from '../actions/selectMode';
 import machines from '../data/machines';
 import machinesSelector from '../data/machinesSelector';
 import empty from '../images/empty.png';
