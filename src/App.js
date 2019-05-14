@@ -13,20 +13,22 @@ class App extends Component {
         <div className="header-container">
           <h1>Revolución Industrial</h1>
         </div>
-        <div class="body-container">
-          <div class="row">
-            <div class="col-md-4">
+        <div className="body-container">
+          <div className="row">
+            <div className="col-md-4">
               <Machines />
             </div>
-            <div class="col-md-4">
+            <div className="col-md-4">
               <Earnings />
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-8">
+          <div className="row">
+            <div className="col-md-8">
               <Panel />
             </div>
-            <div class="col-md-4">
+          </div>
+          <div className="row">
+            <div className="col-md-8">
               <Details />
             </div>
           </div>

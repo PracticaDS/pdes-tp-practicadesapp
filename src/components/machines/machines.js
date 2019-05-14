@@ -7,14 +7,7 @@ import './machines.css';
 
 class MachinesSelector extends Component {
   render() {
-    const {
-      machinesSelector,
-      machineSelected,
-      updateMachineSelected,
-      selectMode,
-      chooseRawMaterial,
-      chooseCrafter
-    } = this.props;
+    const { machinesSelector, updateMachineSelected, chooseRawMaterial, chooseCrafter } = this.props;
 
     return (
       <div className="machines">
