@@ -13,7 +13,7 @@ const initialState = {
   machines,
   selected: 24,
   machinesSelector,
-  machineSelected: 1,
+  machineSelected: 6,
   earnings: 0,
   chooseRawMaterial: false,
   chooseCrafter: false
@@ -75,5 +75,30 @@ describe('reducer', () => {
     ];
     store.dispatch(girar(2));
     expect(store.getActions()).toEqual(expectedActions);
+  });
+  it('al ckickear en una maquina del selector se actualiza la maquina seleccionada', () => {
+    expect(initialState.machineSelected).toEqual(6);
+    const finalState = reducer(initialState, {
+      type: 'updateMachineSelected',
+      selected: 2
+    });
+    expect(finalState.machineSelected).toEqual(2);
+  });
+  it('al ckickear en una maquina del selector se actualiza el className', () => {
+    expect(initialState.machinesSelector[2].className).toEqual('machine');
+    const finalState = reducer(initialState, {
+      type: 'updateMachineSelected',
+      selected: 2
+    });
+    const className = finalState.machinesSelector[2].className;
+    expect(className).toEqual('selected');
+  });
+  it('al ckickear en el panel se actualiza el casillero seleccionado', () => {
+    expect(initialState.selected).toEqual(24);
+    const finalState = reducer(initialState, {
+      type: 'updateSelected',
+      selected: 10
+    });
+    expect(finalState.selected).toEqual(10);
   });
 });
