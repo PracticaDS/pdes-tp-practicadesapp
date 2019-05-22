@@ -27,10 +27,12 @@ class MachineService {
   //     .catch(console.log);
 
   getFactories = user =>
-    new Promise((resolve, reject) =>
-      ['gabriel', 'etolaba'].includes(user)
-        ? resolve([{ name: 'partida 1', updatedAt: moment().format('YYYY/MM/DD'), cantMachines: 2 }])
-        : reject('error')
+    new Promise(resolve =>
+      resolve(
+        ['gabriel', 'etolaba'].includes(user)
+          ? [{ name: 'partida 1', updatedAt: moment().format('YYYY/MM/DD'), cantMachines: 2 }]
+          : []
+      )
     );
 }
 
