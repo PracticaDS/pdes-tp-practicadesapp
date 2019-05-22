@@ -9,12 +9,14 @@ import App from './App';
 import LogIn from './components/login';
 import * as serviceWorker from './serviceWorker';
 import storeCreator from './storeCreator';
+import Factories from './components/factories';
 
 ReactDOM.render(
   <Provider store={storeCreator}>
     <Router>
-      <Route path="/panel" component={App} />
-      <Route path="/" component={LogIn} />
+      <Route exact path="/panel" component={App} />
+      <Route exact path="/factories" component={Factories} />
+      <Route exact path="/" component={LogIn} />
     </Router>
   </Provider>,
   document.getElementById('root')
