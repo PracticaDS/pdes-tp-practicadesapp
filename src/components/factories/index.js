@@ -15,10 +15,9 @@ class Factories extends Component {
 
   componentDidMount() {
     this.machineService
-      .getFactories('gabriel')
+      .getFactories(JSON.parse(localStorage.getItem('user')))
       .then(factories => {
         this.setState({ factories });
-        console.log(factories);
       })
       .catch(err => console.log(err));
   }
