@@ -13,8 +13,8 @@ import storeCreator from './storeCreator';
 ReactDOM.render(
   <Provider store={storeCreator}>
     <Router>
-      <Route path="/" component={LogIn} />
       <Route path="/panel" component={App} />
+      <Route path="/" component={LogIn} />
     </Router>
   </Provider>,
   document.getElementById('root')

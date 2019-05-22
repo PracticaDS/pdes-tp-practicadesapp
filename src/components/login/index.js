@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-return-assign */
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -12,7 +14,9 @@ class LogIn extends Component {
         <br />
         <div className="ui action input">
           <input type="text" size="40" placeholder="Usuario..." />
-          <button className="ui button">Ingresar</button>
+          <button className="ui button" onClick={() => (window.location.pathname = '/panel')}>
+            Ingresar
+          </button>
         </div>
       </div>
     );
