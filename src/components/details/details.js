@@ -12,6 +12,7 @@ class Details extends Component {
         rawMaterialStarter,
         direction,
         className,
+        position,
         crafterMaterials,
         crafterReturn
       }
@@ -24,6 +25,7 @@ class Details extends Component {
         <h4 className="marginH4"> rawMaterialStarter: {rawMaterialStarter} </h4>
         <h4 className="marginH4"> direction: {direction} </h4>
         <h4 className="marginH4"> className: {className} </h4>
+        <h4 className="marginH4"> position: {position} </h4>
         <h4 className="marginH4"> crafterMaterials: [{crafterMaterials.map(m => `${m}, `)}] </h4>
         <h4 className="marginH4"> crafterReturn: {crafterReturn} </h4>
         <h4 className="marginH4"> receta1: oro y cobre -> hierro </h4>
