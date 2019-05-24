@@ -27,13 +27,20 @@ class Factories extends Component {
     return JSON.parse(localStorage.getItem('user'));
   }
 
+  crear() {
+    window.location.pathname = '/panel';
+  }
+
   render() {
     return (
       <div>
+        <button type="button" className="boton2">
+          cerrar sesion
+        </button>
         <br />
         <h2 className="">Hola {this.getUserName()}! Estas son tus fabricas:</h2>
         <br />
-        <button type="button" className="boton2">
+        <button type="button" className="boton2" onClick={() => this.crear()}>
           crear
         </button>
         <br />
