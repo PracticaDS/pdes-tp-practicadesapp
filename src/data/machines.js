@@ -11,7 +11,8 @@ const machines = Array.from({ length: 100 }).map((_, position) => ({
   direction: 'd',
   value: -1,
   crafterMaterials: [],
-  crafterReturn: -1
+  crafterReturn: -1,
+  factoryId: 'id'
 }));
 machines[24] = Object.assign({}, machines[24], { className: 'dselected' });
 

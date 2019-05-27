@@ -19,16 +19,9 @@ class MachineService {
     }
   }
 
-  getFactories = user => axios.get(`${port}/factories`, {}, config);
+  getFactories = user => axios.get(`${port}/${user}/factories`, {}, config);
 
-  // getFactories = user =>
-  //   new Promise(resolve =>
-  //     resolve(
-  //       ['gabriel', 'etolaba'].includes(user)
-  //         ? { data: [{ name: 'partida 1', updatedAt: '2010/06/02', cantMachines: 2 }] }
-  //         : { data: [] }
-  //     )
-  //   );
+  postFactory = (user, body) => axios.post(`${port}/${user}/factory`, body, config);
 }
 
 export default MachineService;
