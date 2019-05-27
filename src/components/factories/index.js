@@ -44,6 +44,18 @@ class Factories extends Component {
     this.setState({ [name]: value });
   }
 
+  delete(factoryId) {
+    this.machineService
+      .deleteFactory(factoryId)
+      .then(() => {
+        this.machineService.getFactories(this.getUserName()).then(({ data: factories }) => {
+          this.setState({ factories });
+          console.log('factory deleted');
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
   render() {
     return (
       <div>
@@ -88,7 +100,7 @@ class Factories extends Component {
                   </button>
                 </td>
                 <td className="">
-                  <button type="button" className="boton">
+                  <button type="button" className="boton" onClick={() => this.delete(factory._id)}>
                     eliminar
                   </button>
                 </td>
