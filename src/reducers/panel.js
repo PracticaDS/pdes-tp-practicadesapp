@@ -2,6 +2,7 @@ import { flatMap } from 'lodash';
 import { type as updateSelected } from '../actions/updateSelected';
 import { type as updateMachineSelected } from '../actions/updateMachineSelected';
 import { type as tick } from '../actions/tick';
+import { type as updateMachines } from '../actions/updateMachines';
 import machines from '../data/machines';
 import machinesSelector from '../data/machinesSelector';
 import empty from '../images/empty.png';
@@ -184,7 +185,7 @@ const initialState = {
   chooseCrafter: false
 };
 
-function panel(state = initialState, { type, selected }) {
+function panel(state = initialState, { type, selected, machinesToUpdate }) {
   switch (type) {
     // click in panel
     case updateSelected: {
@@ -249,6 +250,12 @@ function panel(state = initialState, { type, selected }) {
       return Object.assign({}, state, {
         machines: newMachines,
         earnings: state.earnings + earning
+      });
+    }
+    // updateMachines
+    case updateMachines: {
+      return Object.assign({}, state, {
+        machines: machinesToUpdate
       });
     }
     default:
