@@ -24,6 +24,10 @@ class MachineService {
   postFactory = (user, body) => axios.post(`${port}/${user}/factory`, body, config);
 
   deleteFactory = factoryId => axios.delete(`${port}/${factoryId}/factory`, {}, config);
+
+  getMachines = factoryId => axios.get(`${port}/${factoryId}/machines`, {}, config);
+
+  putMachines = machines => axios.put(`${port}/machines`, machines, config);
 }
 
 export default MachineService;

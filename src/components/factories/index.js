@@ -29,15 +29,21 @@ class Factories extends Component {
   }
 
   crear() {
-    this.machineService
-      .postFactory(this.getUserName(), { name: this.state.name, src: empty })
-      .then(() => {
-        this.machineService.getFactories(this.getUserName()).then(({ data: factories }) => {
-          this.setState({ factories });
-          window.location.pathname = '/panel';
-        });
-      })
-      .catch(err => console.log(err));
+    if (this.state.name === '' || this.state.factories.map(f => f.name).includes(this.state.name)) {
+      console.log('the name already exists');
+    } else {
+      this.machineService
+        .postFactory(this.getUserName(), { name: this.state.name, src: empty })
+        .then(({ data }) => {
+          localStorage.setItem('factoryId', JSON.stringify(data.factory._id));
+          localStorage.setItem('name', JSON.stringify(data.factory.name));
+          this.machineService.getFactories(this.getUserName()).then(({ data: factories }) => {
+            this.setState({ factories });
+            window.location.pathname = '/panel';
+          });
+        })
+        .catch(err => console.log(err));
+    }
   }
 
   handleChange({ target: { name, value } }) {
@@ -56,10 +62,20 @@ class Factories extends Component {
       .catch(err => console.log(err));
   }
 
+  signOut() {
+    window.location.pathname = '/';
+  }
+
+  play(factoryId, name) {
+    localStorage.setItem('factoryId', JSON.stringify(factoryId));
+    localStorage.setItem('name', JSON.stringify(name));
+    window.location.pathname = '/panel';
+  }
+
   render() {
     return (
       <div>
-        <button type="button" className="boton2">
+        <button type="button" className="boton2" onClick={() => this.signOut()}>
           cerrar sesion
         </button>
         <br />
@@ -95,7 +111,11 @@ class Factories extends Component {
                 <td className="">{moment(factory.updatedAt).format('YYYY/MM/DD')}</td>
                 <td className="">{factory.cantMachines}</td>
                 <td className="">
-                  <button type="button" className="boton">
+                  <button
+                    type="button"
+                    className="boton"
+                    onClick={() => this.play(factory._id, factory.name)}
+                  >
                     jugar
                   </button>
                 </td>
