@@ -1,9 +1,10 @@
 import empty from '../images/empty.png';
 
-const machines = Array.from({ length: 100 }).map(() => ({
+const machines = Array.from({ length: 100 }).map((_, position) => ({
   className: 'dpiece',
   src: empty,
   alt: '1',
+  position,
   rawMaterials: [],
   typeMachine: -1,
   rawMaterialStarter: -1,

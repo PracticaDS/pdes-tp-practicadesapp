@@ -1,5 +1,4 @@
 import axios from 'axios';
-import moment from 'moment';
 
 let _machineService = null;
 
@@ -9,7 +8,7 @@ const config = {
   }
 };
 
-const port = 'http://localhost:8080';
+const port = 'http://localhost:3001/api';
 
 class MachineService {
   constructor() {
@@ -20,26 +19,16 @@ class MachineService {
     }
   }
 
-  // getFactories = user =>
-  //   axios
-  //     .get(`${port}/${user}/factories`, {}, config)
-  //     .then(factories => factories)
-  //     .catch(console.log);
+  getFactories = user => axios.get(`${port}/factories`, {}, config);
 
-  getFactories = user =>
-    new Promise((resolve, reject) =>
-      ['gabriel', 'etolaba'].includes(user)
-        ? resolve([{ name: 'partida 1', updatedAt: moment().format('YYYY/MM/DD'), cantMachines: 2 }])
-        : reject('error')
-    );
+  // getFactories = user =>
+  //   new Promise(resolve =>
+  //     resolve(
+  //       ['gabriel', 'etolaba'].includes(user)
+  //         ? { data: [{ name: 'partida 1', updatedAt: '2010/06/02', cantMachines: 2 }] }
+  //         : { data: [] }
+  //     )
+  //   );
 }
 
 export default MachineService;
-
-// const setItem = (key, value) => localStorage.setItem(key, JSON.stringify(value))
-
-// const getItem = key => JSON.parse(localStorage.getItem(key))
-
-// const removeItem = key => localStorage.removeItem(key)
-
-// module.exports = {setItem, getItem, removeItem};
