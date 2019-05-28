@@ -5,13 +5,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import MachineService from '../../services/machine';
+import empty from '../../images/empty.png';
 import './factories.css';
 
 class Factories extends Component {
   constructor(props) {
     super(props);
     this.machineService = new MachineService();
-    this.state = { factories: [] };
+    this.state = { factories: [], name: '' };
   }
 
   componentDidMount() {
@@ -28,7 +29,19 @@ class Factories extends Component {
   }
 
   crear() {
-    window.location.pathname = '/panel';
+    this.machineService
+      .postFactory(this.getUserName(), { name: this.state.name, src: empty })
+      .then(() => {
+        this.machineService.getFactories(this.getUserName()).then(({ data: factories }) => {
+          this.setState({ factories });
+          window.location.pathname = '/panel';
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
+  handleChange({ target: { name, value } }) {
+    this.setState({ [name]: value });
   }
 
   render() {
@@ -40,6 +53,14 @@ class Factories extends Component {
         <br />
         <h2 className="">Hola {this.getUserName()}! Estas son tus fabricas:</h2>
         <br />
+        <input
+          type="text"
+          name="name"
+          size="40"
+          placeholder="name..."
+          onChange={this.handleChange.bind(this)}
+          defaultValue={this.state.name}
+        />
         <button type="button" className="boton2" onClick={() => this.crear()}>
           crear
         </button>
@@ -56,8 +77,8 @@ class Factories extends Component {
             </tr>
           </thead>
           <tbody className="">
-            {this.state.factories.map(factory => (
-              <tr className="">
+            {this.state.factories.map((factory, i) => (
+              <tr className="" key={i}>
                 <td className="">{factory.name}</td>
                 <td className="">{moment(factory.updatedAt).format('YYYY/MM/DD')}</td>
                 <td className="">{factory.cantMachines}</td>
