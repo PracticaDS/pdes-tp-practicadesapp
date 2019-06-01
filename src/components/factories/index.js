@@ -1,9 +1,13 @@
+/* eslint-disable no-alert */
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-undef */
 /* eslint-disable no-return-assign */
 /* eslint-disable class-methods-use-this */
+import 'react-notifications/lib/notifications.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
 import MachineService from '../../services/machine';
 import empty from '../../images/empty.png';
 import './factories.css';
@@ -30,7 +34,7 @@ class Factories extends Component {
 
   crear() {
     if (this.state.name === '' || this.state.factories.map(f => f.name).includes(this.state.name)) {
-      console.log('the name already exists');
+      NotificationManager.error(this.state.name === '' ? 'name cannot be empty' : 'the name already exists', 'Error')
     } else {
       this.machineService
         .postFactory(this.getUserName(), { name: this.state.name, src: empty })
@@ -56,7 +60,7 @@ class Factories extends Component {
       .then(() => {
         this.machineService.getFactories(this.getUserName()).then(({ data: factories }) => {
           this.setState({ factories });
-          console.log('factory deleted');
+          NotificationManager.error('factory deleted', 'successfully');
         });
       })
       .catch(err => console.log(err));
@@ -75,6 +79,7 @@ class Factories extends Component {
   render() {
     return (
       <div>
+        <NotificationContainer/>
         <button type="button" className="boton2" onClick={() => this.signOut()}>
           cerrar sesion
         </button>
