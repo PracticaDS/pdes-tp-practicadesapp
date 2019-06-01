@@ -16,7 +16,7 @@ class Earnings extends Component {
   }
 
   save() {
-    const cantMachines = this.props.machines.reduce((cant, m) => (m.src === empty ? cant + 1 : cant), 0);
+    const cantMachines = this.props.machines.reduce((cant, m) => (m.src === empty ? cant : cant + 1), 0);
     const factoryId = get(this.props, ['machines', 0, 'factoryId'], '');
     console.log(factoryId);
     this.machineService
