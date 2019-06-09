@@ -1,6 +1,10 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable no-undef */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { get } from 'lodash';
 import tickPanel from '../../actions/tick';
+import empty from '../../images/empty.png';
 import MachineService from '../../services/machine';
 
 import './earnings.css';
@@ -12,9 +16,11 @@ class Earnings extends Component {
   }
 
   save() {
-    console.log(this.props.machines);
+    const cantMachines = this.props.machines.reduce((cant, m) => (m.src === empty ? cant : cant + 1), 0);
+    const factoryId = get(this.props, ['machines', 0, 'factoryId'], '');
+    console.log(factoryId);
     this.machineService
-      .putMachines(this.props.machines)
+      .putMachines({ machines: this.props.machines, factoryId, cantMachines })
       .then(res => {
         console.log(res);
       })
