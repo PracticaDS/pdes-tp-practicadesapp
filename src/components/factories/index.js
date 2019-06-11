@@ -60,7 +60,7 @@ class Factories extends Component {
       .then(() => {
         this.machineService.getFactories(this.getUserName()).then(({ data: factories }) => {
           this.setState({ factories });
-          NotificationManager.error('factory deleted', 'successfully');
+          NotificationManager.info('factory deleted', 'successfully');
         });
       })
       .catch(err => console.log(err));
