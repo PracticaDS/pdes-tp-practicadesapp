@@ -8,7 +8,7 @@ const config = {
   }
 };
 
-const port = 'http://localhost:3001/api';
+const port = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3001/api';
 
 class MachineService {
   constructor() {
