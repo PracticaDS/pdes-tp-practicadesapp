@@ -5,7 +5,7 @@
   "homepage": "https://practicads.github.io/pdes-tp-practicadesapp",
   "dependencies": {
     "@types/lodash": "^4.14.123",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.3.1",
     "expect": "^24.8.0",
     "gh-pages": "^2.0.1",
